@@ -1,0 +1,253 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+    $connection = $objectManager->get(\Magento\Framework\App\ResourceConnection::class)
+            ->getConnection();
+
+    // Replace 'value' with the actual attribute code
+    $attributeCodeBusinessName = 'business_name';
+    $attributeCodeBusinessEmail = 'business_email';
+    $attributeCodeBusinessAddress = 'business_address';
+    $attributeCodeCity = 'city';
+    $attributeCodeProvinceState = 'province_state';
+    $attributeCodePostalZipCode = 'postal_zip_code';
+    $attributeCodePhoneNumber = 'phone_number';
+    $attributeCodeWebsite = 'website';
+    $attributeInterest = 'interest';
+    $attributeCodeBusinessAbout = 'business_about';
+    $attributeCodeHearAboutUs = 'hear_about_us';
+
+    // Fetch the Business Name attribute value from the database
+    $selectBusinessName = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'business_name')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+
+    $businessNameValue = $connection->fetchOne($selectBusinessName);
+
+    // Fetch the Business Email attribute value from the database
+    $selectBusinessEmail = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'business_email')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $businessEmailValue = $connection->fetchOne($selectBusinessEmail);
+
+    // Fetch the Business Address attribute value from the database
+    $selectBusinessAddress = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'business_address')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $businessAddressValue = $connection->fetchOne($selectBusinessAddress);
+
+    // Fetch the City attribute value from the database
+    $selectCity = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'city')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $cityValue = $connection->fetchOne($selectCity);
+
+    // Fetch the Province/State attribute value from the database
+    $selectProvinceState = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'province_state')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $provinceStateValue = $connection->fetchOne($selectProvinceState);
+
+    // Fetch the Postal/ZipCode attribute value from the database
+    $selectPostalZipCode = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'postal_zip_code')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $postalZipCodeValue = $connection->fetchOne($selectPostalZipCode);
+
+    // Fetch the Phone Number attribute value from the database
+    $selectPhoneNumber = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'phone_number')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $phoneNumberValue = $connection->fetchOne($selectPhoneNumber);
+
+    // Fetch the Website attribute value from the database
+    $selectWebsite = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'website')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $websiteValue = $connection->fetchOne($selectWebsite);
+
+    // Fetch the Interest attribute value from the database
+    $selectInterest = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'interest')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $interestValue = $connection->fetchOne($selectInterest);
+
+    // Fetch the Business About attribute value from the database
+    $selectBusinessAbout = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'business_about')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $bussinessAboutValue = $connection->fetchOne($selectBusinessAbout);
+
+    // Fetch the Hear About Us attribute value from the database
+    $selectHearAboutUs = $connection->select()
+    ->from(['eav' => 'customer_entity_varchar'], ['value'])
+    ->join(
+        ['attribute' => 'eav_attribute'],
+        'eav.attribute_id = attribute.attribute_id',
+        ['attribute_code']
+    )
+    ->where('attribute.attribute_code = ?', 'hear_about_us')
+    ->where('eav.entity_id = ?', $customerSession->getCustomer()->getId());
+    $hearAboutUsValue = $connection->fetchOne($selectHearAboutUs);
+
+?>
+
+<div class="field business_name required">
+    <label class="label" for="business_name"><br>
+        <span>Business Name</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="business_name" id="business_name" value="<?= $businessNameValue; ?>" title="<?= $block->escapeHtmlAttr(__('Business Name')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field business_email required">
+    <label class="label" for="business_email"><br>
+        <span>Business Email</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="business_email" id="business_email" value="<?= $businessEmailValue; ?>" title="<?= $block->escapeHtmlAttr(__('Business Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+    </div>
+</div>
+
+<div class="field business_address required">
+    <label class="label" for="business_address"><br>
+        <span>Business Address</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="business_address" id="business_address" value="<?= $businessAddressValue; ?>" title="<?= $block->escapeHtmlAttr(__('Business Address')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field city required">
+    <label class="label" for="city"><br>
+        <span>City</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="city" id="city" value="<?= $cityValue; ?>" title="<?= $block->escapeHtmlAttr(__('City')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field province_state required">
+    <label class="label" for="province_state"><br>
+        <span>Provience/State</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="province_state" id="province_state" value="<?= $provinceStateValue; ?>" title="<?= $block->escapeHtmlAttr(__('Provience/State')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field postal_zip_code required">
+    <label class="label" for="postal_zip_code"><br>
+        <span>Postal/Zip Code</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="postal_zip_code" id="postal_zip_code" value="<?= $postalZipCodeValue; ?>" title="<?= $block->escapeHtmlAttr(__('Postal/Zip Code')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field phone_number required">
+    <label class="label" for="phone_number"><br>
+        <span>Phone Number</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="phone_number" id="phone_number" value="<?= $phoneNumberValue; ?>" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field website">
+    <label class="label" for="website"><br>
+        <span>Website</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="website" id="website" value="<?= $websiteValue; ?>" title="<?= $block->escapeHtmlAttr(__('Website')) ?>" class="input-text" data-validate="{required:false}">
+    </div>
+</div>
+
+<div class="field interest required">
+    <label class="label" for="interest"><br>
+        <span>What type of products are you interested in?</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="interest" id="interest" value="<?= $interestValue; ?>" title="<?= $block->escapeHtmlAttr(__('What type of products are you interested in?')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field business_about required">
+    <label class="label" for="business_about"><br>
+        <span>Briefly tell us a little bit about your business</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="business_about" id="business_about" value="<?= $bussinessAboutValue; ?>" title="<?= $block->escapeHtmlAttr(__('Briefly tell us a little bit about your business')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+
+<div class="field hear_about_us required">
+    <label class="label" for="hear_about_us"><br>
+        <span>How did you hear about us?</span>
+    </label><br>
+    <div class="control">
+        <input type="text" name="hear_about_us" id="hear_about_us" value="<?= $hearAboutUsValue; ?>" title="<?= $block->escapeHtmlAttr(__('How did you hear about us?')) ?>" class="input-text" data-validate="{required:true}">
+    </div><br>
+</div>
