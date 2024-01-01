@@ -2,7 +2,6 @@
     "name": "custom/customer",
     "description": "Add Fields on Customer Account Page for Magento 2",
     "type": "magento2-module",
-    "version": "1.2.9",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
